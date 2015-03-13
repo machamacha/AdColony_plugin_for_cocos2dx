@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>01C5F998-57F1-4A22-B33B-4CD2E8E395C8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PluginAdColony</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DD90A13FA8119E69FBE4FA202374F8BD75F4C5B0</key>
+		<string>git.gree-dev.net:ad-client/adcolony_cocos2dx.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>adcolony/proj.ios/PluginAdColony.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DD90A13FA8119E69FBE4FA202374F8BD75F4C5B0</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>git.gree-dev.net:ad-client/adcolony_cocos2dx.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DD90A13FA8119E69FBE4FA202374F8BD75F4C5B0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DD90A13FA8119E69FBE4FA202374F8BD75F4C5B0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>adcolony_cocos2dx</string>
+		</dict>
+	</array>
+</dict>
+</plist>

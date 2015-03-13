@@ -1,0 +1,15 @@
+#Android
+local.properties
+bin/
+gen/
+
+#xcode
+xcuserdata/
+
+#libs/
+#build/
+#zip/
+#*.zip
+
+# built libraries
+adlantis/proj.android/sdk/

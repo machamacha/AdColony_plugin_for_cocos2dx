@@ -1,0 +1,3 @@
+[submodule "AdcolonySample/cocos2d"]
+	path = AdColonySample/cocos2d
+	url = http://github.com/cocos2d/cocos2d-x.git
