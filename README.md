@@ -20,64 +20,63 @@ About
 =====
 --------
 
-This document explains how to show AdColony video ads in your Cocos2d-x application.
-Currently we support following development tools:
+このドキュメントはcocos2d-xで開発したアプリケーションにAdColony SDKを導入する際の手順書です。このドキュメントは下記開発環境を想定しています。
 
-* Cocos2d-x version: 3.0+
-* development language: C++
-* iOS development IDE: Xcode
-* Android development IDE: Eclipse
+* Cocos2d-x バージョン: 3.0+
+* 開発言語: C++
+* iOS開発IDE: Xcode
+* Android開発IDE: Eclipse
 
 Run Sample
 ==========
 -----------------
-* Update submodule
+* submoduleをインストールする
 
         git submodule update --init --recursive
 
-* Setup cocos2dx
+*  cocos2dxが依存してるpackageをダウンロードする
 
         cd AdColonySample/cocos2d
         ./download-deps.py
 
-* Copy adcolony plugin to sample
+* `adcolony` ディレクトリー を `AdColonySample/cocos2d/plugin/plugins/`の下にコピーしてください。
 
         cp -a ./adcolony AdColonySample/cocos2d/plugin/plugins/
 
-Run on iOS
+iOSで実行する場合
 ---------------
 * Open `AdColonySample/proj.ios/AdColonySample.xcodeproj`
 * Build and run on iOS
 
-Run on Android
+Androidで実行する場合
 ---------------------
-* Build plugin
+* pluginをビルドする
 
         cd AdColonySample/cocos2d/plugin/tools/
         ./publish
         ./gameDevGuide.sh
 
-* Import project into Eclipse
-    * Import cocos2d library
-        * Import `adcolonySample/cocos2d/cocos/platform/android/java`.
-    * Import sample project
-        * Import `adcolonySample/proj.android`.
-* Set up Variables:
-    * C/C++ Environment Variable `NDK_ROOT`:
-        * Eclipse->Preferences->C/C++->Build->**Environment**.
-        * Click **Add** button and add a new variable `NDK_ROOT` pointing to the root NDK directory
+* プロジェクトをEclipseにインポート
+    * cocos2dライブラリーをインポート
+        * `AdColonySample/cocos2d/cocos/platform/android/java`ディレクトリーからインポートしてください。
+    * サンプルプロジェクトをインポート
+        * `AdColonySample/proj.android`ディレクトリーからインポートしてください。
+* 環境変数を設定
+    * C/C++ 環境変数 `NDK_ROOT`の設定:
+        * Eclipse->Preferences->C/C++->Build->**Environment**を開く
+        * **Add**をクリックして"name"に`NDK_ROOT`、"value"にNDK実際のパスに設定しくてください。
 
-* Link Google Play Service to your project
+* Google Play Serviceをリンクする
 
-    AdColony SDK is using the Google Play services API to get an advertising identifier to track conversion. Please link Google Play services to your Eclipse project as follows:
+    AdColony SDK は`Google play service` API を使ってIDFAを取得してコンバージョンしています.下記のようにプロジェクトに"Google Play services"をリンクしてください。 
 
-    * Import `Google Play services` library project to your Eclipse workspace, make sure it can be built with no error.
-    * Select your project, right-click and select "Android".
-    * Click "Add" and choose the `Google Play services` project.
+    * `Google Play services` ライブラリープロジェクトをワークスペースに導入する。
+    * プロジェクトを選択し、右クリックして 「Android」を選択します。
+    * "Add" クリックして開いたウィンドウに`Google Play services` プロジェクトを選択します。
 
-    **Note:** When using the Google Play services SDK, Android version should be 2.3 or higher. For full instructions on setting up Google Play services, see [http://developer.android.com/google/play-services/setup.html](http://developer.android.com/google/play-services/setup.html).
+    **Note:** `Google Play Service`の利用には、Android 2.3以上が必要になります、詳細についてはここをチェックをしてください。 [http://developer.android.com/intl/ja/google/play-services/setup.html](http://developer.android.com/intl/ja/google/play-services/setup.html)
 
-* Build and run adcolonySample project 
+* AdColonySampleプロジェクトをビルドして実行
 
     
 Integrate AdColony to your Cocos2d-x Application
@@ -85,25 +84,25 @@ Integrate AdColony to your Cocos2d-x Application
 ----------------------------------------------------------------
 Install Plugin
 =======
-* Copy adcolony directory to `[your_project_path]/cocos2d/plugin/plugins/`
+* `adcolony` ディレクトリー を `[your_project_path]/cocos2d/plugin/plugins/`の下にコピーしてください。
 
 iOS
 ----
-* Add Plugin projects to your Xcode projects
-    * Xcode->File->`Add Files to "yourProject"`
-        * Add `cocos2d/plugin/protocols/proj.ios/PluginProtocol.xcodeproj`
-        * Add `cocos2d/plugin/plugins/adcolony/proj.ios/Pluginadcolony.xcodeproj`
+* Xcodeプロジェクトにプラグインを追加
+    * `Xcode->File->Add Files to "yourProject"`を開く
+        * `cocos2d/plugin/protocols/proj.ios/PluginProtocol.xcodeproj`をプロジェクトに追加してください。
+        * `cocos2d/plugin/plugins/adcolony/proj.ios/Pluginadcolony.xcodeproj`プロジェクトに追加してください。
         ![](./images/add_plugin_to_xcode.png)
 
-* Build Phases->Target Dependencies 
-    * add `Pluginadcolony`
-    * add `PluginProtocol`
-* Build Phases->Link Binary With Libraries
-    * add `libPluginProtocol.a`
-    * add `libPluginAdColony.a`
-    * add frameworks
+* ターゲットを選択して、`Build Phases->Target Dependencies`に下記を追加してください。
+    * Pluginadcolony
+    * PluginProtocol
+* ターゲットを選択して、`Build Phases->Link Binary With Libraries`に下記を追加してください。
+    * libPluginProtocol.a
+    * libPluginAdColony.a
+    * frameworks
         * `libz.1.2.5.dylib`
-        * `AdColony.framework` (`+`->`Add Other...`->`cocos2d/plugin/plugins/adcolony/proj.ios/AdColony.framework`)
+        * `AdColony.framework`  (`+`->`Add Other...`->`cocos2d/plugin/plugins/adcolony/proj.ios/AdColony.framework`)
         * `AdSupport.framework (Set to Optional)`
         * `AudioToolbox.framework`
         * `AVFoundation.framework`
@@ -120,51 +119,50 @@ iOS
         * `SystemConfiguration.framework
         * `WebKit.framework` (Set to Optional)
 
-* Build Settings
-    * Header Search Paths
+* `Build Settings`に下記を設定してください。
+    * `Header Search Paths`に下記を追加してください。
         * `$(SRCROOT)/../cocos2d/plugin/protocols/include`
         * `$(SRCROOT)/../cocos2d/plugin/plugins/adcolony/include`
-    * Linking-Other Linker Flags
+    * `Linking-Other Linker Flags`に下記を追加してください。
         * `-force_load $(BUILT_PRODUCTS_DIR)/libPluginAdColony.a`
         * `-force_load $(SRCROOT)/../cocos2d/plugin/plugins/adcolony/proj.ios/AdColony.framework/AdColony`
         * `-fobjc-arc` 
 
-        **Note**:  `-force_load` options are not necessary  if `-ObjC` is set.
+        **注意**:  `-ObjC`が設定された場合、`-force_load` を設定する必要がないです。
 
 Android
 -------
 (Based on Eclipse)
 
-* Build and install plugin
-    * Set build flag
-        Open `[your_project_path]/proj.android/jni/Application.mk` and check the `APP_STL` value.
+* pluginをビルドする
+    * コンパイルフラグを設定する
+        `[your_project_path]/proj.android/jni/Application.mk`ファイルに、`APP_STL` を確認してください。
     
             APP_STL := c++_static #or gnustl_static
     
-    Open  `[your_project_path]/cocos2d/plugin/plugins/adcolony/proj.android/jni/Application.mk`，set same `APP_STL`  value with above.
-    * Set build config ( cocos2d-x version < 3.3 )
-        * Change dir to `[your_project_path]/cocos2d/plugin/tools`.
-        * Edit `config.sh`, add `adcolony` to `ALL_PLUGINS`
-            
+    `[your_project_path]/cocos2d/plugin/plugins/adcolony/proj.android/jni/Application.mk`を開いて`APP_STL`を下記の設定と同じ値を設定してください。
+    * config.shを設定する( cocos2d-x version < 3.3 )
+        * `[your_project_path]/cocos2d/plugin/tools/config.sh`ファイルを開いて、`ALL_PLUGINS`に`adcolony`を追加してください。
+
                 #define plugins array 
                 export ALL_PLUGINS=("adcolony")
 
-    * Build and install plugin
-    
-            cd [your_project_path]/cocos2d/plugin/tools/
-            ./publish.sh
-            ./gameDevGuide.sh #please select adcolony
+        * AdColonyプラグインをビルドする。
 
-    * Edit Manifest
+                cd [your_project_path]/cocos2d/plugin/tools/
+                ./publish.sh
+                ./gameDevGuide.sh #please select adcolony
+
+    * Manifestを修正する
         
-        gameDevGuide.sh has edit your "AndroidManifest.xml", plese make sure the lines below has been added before the `<application...>`tag
+        gameDevGuide.sh既に"AndroidManifest.xml"を修正しました、下記のコードが`<application...>`タグの前に追加されているのを確認してください：
 
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.VIBRATE" />
         
-        and the following lines before the end application tag near the bottom:
+        下記のコードがapplicationタグに追加しました:
 
             <activity android:name="com.jirbo.adcolony.AdColonyOverlay"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -178,12 +176,12 @@ Android
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         
-        In order for our Dynamic End Cards to perform optimally, please enable hardware acceleration by adding the following line to your application tag in your manifest:
+        Dynamic End Cardのパフォーマンスを最適化するために、下記のようにハードウェアアクセラレーションを有効にしてください。
             
             android:hardwareAccelerated="true"
-    Note: if your application targets below API 13, you will likely need to remove screenSize from the configChanges property of the above activity tags.
+    注意: アプリがAPI レベル13以下に対応している場合、上記configChanges設定からscreenSizeを消してください。
 
-* Initiate Plugin-x on src/org/cocos2dx/cpp/AppActivity.java
+* Plugin-xを初期化するコードを`proj.android/src/org/cocos2dx/cpp/AppActivity.java`と記述してください。
 
         import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
         import org.cocos2dx.plugin.PluginWrapper;
@@ -198,12 +196,13 @@ Android
             return glSurfaceView;
         }
     
-* Set Java VM for plugin(proj.android/jni/hellocpp/main.cpp)
-    * Include header file
+* Java VMの設定 
+   * `proj.android/jni/hellocpp/main.cpp`を開く。
+    * ヘッダーファイルをインポート
     
             #include "PluginJniHelper.h"
 
-    * Set java vm
+    * 下記のようにJava VMをセットしてください。
 
             void cocos_android_app_init (JNIEnv* env, jobject thiz) {
                 LOGD("cocos_android_app_init");
@@ -213,9 +212,9 @@ Android
                 env->GetJavaVM(&vm);
                 PluginJniHelper::setJavaVM(vm);
             }
-* Import AdColony plugin to Adroind.mk ( `[your_project_path]/proj.android/jni/Android.mk` ) 
-
-    `gameDevGuide.sh` has edit your "Android.mk",plese make sure the lines below has been added:
+* `Adroind.mk`にAdColony plugin関係あるファイルを記述 ( `[your_project_path]/proj.android/jni/Android.mk` )
+ 
+        `gameDevGuide.sh`既に`Android.mk`を修正しました、下記のコードが追加されているのを確認してください：
 
             $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/plugin/publish)
             
@@ -224,25 +223,26 @@ Android
             
             $(call import-module,plugins/adcolony/android)
 
-    Example:
+    例:
  
     ![](./images/Android_mk_snapshot.png)
 
-* Link Google Play Service to your project
+* Google Play Serviceをリンクする
 
-    AdColony SDK is using the Google Play services API to get an advertising identifier to track conversion. Please link Google Play services to your Eclipse project as follows:
+    AdColony SDK は`Google play service` API を使ってIDFAを取得してコンバージョンしています.下記のようにプロジェクトに"Google Play services"をリンクしてください。 
 
-    * Import `Google Play services` library project to your Eclipse workspace, make sure it can be built with no error.
-    * Select your project, right-click and select "Android".
-    * Click "Add" and choose the `Google Play services` project.
-    * Edit `AndroidManifest.xml` and add following tag as a child of the `<application>` element.
+    * `Google Play services` ライブラリープロジェクトをワークスペースに導入する。
+    * プロジェクトを選択し、右クリックして 「Android」を選択します。
+    * "Add" クリックして開いたウィンドウに`Google Play services` プロジェクトを選択します。
+    * AndroidManifest.xmlを開いて、`<application>` タグの間に下記を確認してください。なかったら追加してください。
      
         <meta-data  android:name="com.google.android.gms.version"  android:value="@integer/google_play_services_version" />
 
+    **Note:** `Google Play Service`の利用には、Android 2.3以上が必要になります、詳細についてはここをチェックをしてください。 [http://developer.android.com/intl/ja/google/play-services/setup.html](http://developer.android.com/intl/ja/google/play-services/setup.html)
 
-    **Note:** When using the Google Play services SDK, Android version should be 2.3 or higher. For full instructions on setting up Google Play services, see [http://developer.android.com/google/play-services/setup.html](http://developer.android.com/google/play-services/setup.html).
 
-**Note:** if your application targets below API 13, you will likely need to remove screenSize from the configChanges property of activity tags in `[your_project_path]/proj.android/AndroidManifest.xml`.
+注意: アプリがAPI レベル13以下に対応している場合、 `[your_project_path]/proj.android/AndroidManifest.xml`ファイルの中にconfigChanges設定からscreenSizeを消してください。
+
 
 Setup AdColony plugin
 =========================
@@ -250,7 +250,7 @@ Setup AdColony plugin
 Include header files and namespaces
 ------------------------------------------------
 
-* import header file
+* ヘッダーファイルをインポート
 
         #include "AdColonyAgent.h"
 
@@ -263,7 +263,7 @@ Include header files and namespaces
 Configure AdColony
 -------------------------
 
-Load AdColony plugin and set account info like following.
+AdColony Pluginをロードして下記のように必要の情報を設定してください。
 
     //Load plugin
     AdColonyAgent* _adsAdColonyAgent = AdColonyAgent::getInstance();
@@ -275,21 +275,21 @@ Load AdColony plugin and set account info like following.
 
 - **customID**
 
-    Sets a custom ID String that is passed through to server-­side V4VC callbacks
+    ユーザ識別子(custom identifier)を設定してください。これは毎回リワードコールバックするときにアプリのサーバ側にも送信されます。これを使用することで、通貨を付与するユーザを特定することができます。V4VCの場合設定してください。
 - **opntions**
 
-    A String containing your app version, and the origin store (example: “version:1.1,store:google”). Please note that if you are integrating into an Amazon app you will need to replace 'google' with 'amazon' in the client_options String.  
+    アプリのバージョンとストア情報を設定してください (例: “version:1.1,store:google”). Amazonストアに出す場合ストアは 'google' ではなく 'amazon' 設定してください。iOSの場合、store情報はなくていいです。
 - **appID**
 
-    The AdColony app ID for your app.
+    AdColony app ID。
 - **zoneIDs**
 
-    Any number ( >= 1 ) of AdColony zone ID strings. AdColony zone IDs can be created and retrieved at the Control Panel. If null or inaccurate, your app will be unable to play ads and AdColony will only provide limited reporting and install tracking functionality..
+    枠IDリスト。
 - **listener**
 
-    Registers a AdColonyAdsListener to be notified from AdColony SDK.
+    AdColony SDKから通知を受けるためのAdColonyAdsListenerを登録してください。
 
-listener example from AdColonySample
+listenerの例(AdColonySampleから）
 
     /* HelloWorldScene.h */
 
@@ -339,72 +339,73 @@ listener example from AdColonySample
 
 Showing interstitial Videos
 =================
-After video load sccessfully show interstitial video ads as follows:
+動画成功にロードした後に下記のようにインタスティシャール広告を表示してください:
 
     _adcolonyAds->showVideoAd("zoneID");
 
 - **zoneID**
 
-    The zone you want to play videos from.
+    configureで設定されてるIDリスト中にある管理画面で取得した有効なインタスティシャール枠IDです。
 
 Showing V4VC Videos
 ===============
-AdColony V4VC (Videos-for-Virtual-Currency) is a system built on top of our [[interstitial ads|AdColony Product Overview]] that allows you to reward your app's users with the app's virtual currency upon completion of an ad. AdColony V4VC does not keep track of your users' currency balances for you; it provides notifications to you when a user needs to be credited with a reward. 
+AdColony V4VC (Videos-for-Virtual-Currency)は[[interstitial ads|AdColony Product Overview]]の上で実装した動画広告を再生完了した時点で、ユーザーに仮想通貨を付与することができるシステムです。AdColony V4VCはユーザーの仮想通貨残高を追跡しません。ユーザーに仮想通貨を付与すべき時点でアプリケーションに通知する機能を提供しています。
 
-For apps that only store user currency balances on the device, V4VC has a client-side mode that is very simple to use. If your app uses a server to store user currency balances, V4VC can operate in a secure, server-side mode, adding a step in the reward process where your app's server is contacted.
+クライアント側で仮想通貨の残高を管理してるアプリには、V4VCのクライアントモードで簡単に実装できます。サーバー側で仮想通貨の残高を管理してる場合、V4VCはよりセキュリティーの高いサーバー側モードによって、付与する時点でサーバーに通知することも可能です。
 
 Client-side Mode Instructions
 --------------------------------------
-Make sure you've performed the required [[Configure AdColony]]. Client-side mode works just like [[Showing-Interstitial-Videos]], but with a little bit of extra functionality on top.
+先に[[Configure AdColony]]を実装してください。クライアントモードは [[Showing-Interstitial-Videos]]の実装する方法とほぼ同様であり、いくつかの機能が追加されます。
 
-1. Create or sign into your [AdColony account](http://clients.adcolony.com) and retrieve the AdColony app ID and AdColony zone ID for your app. For help, see [Setting Up Apps And Zones](http://support.adcolony.com/customer/portal/articles/761987-setting-up-apps-zones).
-2. In the control panel for your zone, enable "Virtual Currency Rewards" and enter a currency name and reward amount
-3. Insert code that runs on app launch to configure AdColony with your app ID, zone ID, and an AdColonyAdsListener
-4. Implement the `AdColonyAdsListener` V4VC reward callback to update the currency balance and app UI
-5. After video load sccessfully show V4VC video ads as follows:
+1. Glossomにてapp ID、zone IDの発行しお渡し致します。 
+2. 枠の設定ページの"Virtual Currency Rewards" を有効にして、currency name と reward amount　を設定してください。
+3. アプリ起動するところにAdColonyの設定関数（configure）でapp ID, zone ID, an AdColonyDelegateを設定してください。
+4. `AdColonyAdsListener` V4VCリワードコールバックを実装してください。その中でユーザーの仮想通貨の残高とそのUIを更新してください。
+5. AdColonyのV4VCの動画広告とポップアップメッセージを表示するコードを実装してください。
 
         _adcolonyAds->showV4VC("zoneID", prePopup, postPopup);
 
     - **zoneID**
 
-        The zone you want to play videos from.
+        configureで設定されてるIDリスト中にある管理画面で取得した有効なV４VC枠IDです。
     - **prePopup**
 
-       True to show a pre-­popup dialog prior to a V4VC video advertisement. 
+       動画表示前の確認メッセージを表示するかどうか、表示したい場合trueに設定してください。
     - **postPopup**
 
-         True to show a post-­popup dialog after a V4VC video advertisement.
+        動画表示後の確認メッセージを表示するかどうか、表示したい場合trueに設定してください。
 
 **Code Example - AdColonySample App**
 
-- The AdColonySample demonstrates the required code for client-side V4VC ads.
+- クライアントモードでのV4VC広告の実装については、サンプルアプリAdColonySampleを参照してくささい。
 
 Server-side Mode Instructions
 ---------------------------------------
-Server-side mode works just like client-side mode, except before AdColony notifies your app of a currency reward, AdColony will contact your app's server. AdColony passes your server a whole bunch of information about the user and the reward, giving your server the opportunity to approve or deny the reward. To enable this process, follow the client-side mode instructions  then perform these additional steps:
+サーバ側モードはAdColonyはアプリに仮想通貨をリワードする通知を行う前に、アプリのサーバー側に先に通知する以外はクライアント側モードとほぼ同じです。AdColonyはアプリのサーバーにユーザーとリワードを含めて様々な情報を渡します。それをもってサーバー側がそのリワードを認証または否認証することができます。この方式を実装するにはクライアントモード手順を実装した上に、下記を実装してください。
 
-1. Modify the `AdColonyAdsListener` V4VC reward callback to retrieve the updated currency balance from your app's server
-2. Provide AdColony with a custom identifier for your users; this is passed through to your server in each reward callback to enable you to identify the user to reward.
-3. Sign into your [AdColony account](http://clients.adcolony.com) and edit your app's zone to enable server-side V4VC and input a callback URL pointing to a page on your app's server
-4. Implement the callback page on your app's server to verify the reward, apply it to the user, and return a valid response
+1. `AdColonyAdsListener` V4VC のリワードコールバックを実装してアプリサーバーからもらった仮想通貨の情報を更新してください。
+2. AdColony SDKにユーザ識別子(custom identifier)を設定してください。これは毎回リワードコールバックするときにアプリのサーバ側にも送信されます。これを使用することで、通貨を付与するユーザを特定することができます。
+3.Glossomにてzoneのサーバ側V4VCを有効にし、ポストバック用のURLを設定致します。
+4. ポストバック先のURL実装、そして有効なレスポンスをしてください。
 
 Code Example - Custom ID
 -----------------------------------
-Now that iOS 7 is in wide use (which has removed the identifiers we provide by default), you will need to specify a custom user ID in order to identify your users. A good default is the vendor identifier, which is unique per-user per-developer.
+ユーザーを識別するために、カスタマイズユーザーIDを設定してください。よく使われるのはvendor identifier、開発者ごとに固有のものであります。
 
-1. Call `_adcolonyAds->setCustomID("customID")` in your app *before* configuring AdColony, to ensure that the custom user ID  you provide is used in *every* server communication.
-2. Append `&custom_id=[CUSTOM_ID]` to the end of the callback URL in the control panel for your zone.
+1. AdColonyのアカウント情報を設定する*前*に、`_adcolonyAds->setCustomID("customID")`を呼び出してユーザーIDを設定してください。このIDはサーバーとのすべてのコミュニケーションに使用されます。
+2. Zoneの設定画面でコールバックURLの最後に `&custom_id=[CUSTOM_ID]` を追加してください。
 
 Code Example - Server-side Callback
 -------------------------------------------------
-When using a zone with server-side V4VC, you must make your URL respond appropriately to the AdColony callback. The basic steps are:
+server-side V4VCを設定したzoneを利用の場合、ポストバック先のURLは有効なレスポンスをするため、下記の手順を従って確認してください。
 
-1. Read the URL parameters and verify that they came from AdColony using your zone's secret key
-2. Look up your app's user based on the identifiers provided in the URL parameters
-3. Reward the user with the specified amount and type of currency, checking for a duplicate transaction
-4. Return a valid response string based on the result of the previous steps
+1. URLパラメーターを読んで発行されたzoneの秘密鍵を使って発行したかどうかを確認してください。
+2. パラメーターに含まれたユーザーIDは有効であるかどうかを確認してください。
+3. 重複チェックを行って、ユーザーに指定したアマウントとタイプの通貨を付与してください。
+4. 上記を踏まえて、有効なレスポンスをリターンしてください。
 
-The format of the URL that AdColony will call is as follows, where brackets indicate strings that will vary based on your application and the details of the transaction:
+AdColonyからコールバックするURLの仕様は下記でございます。括弧内に囲まれているパラメータはアプリケーション実装時の情報により動的にセットされます。
+
 ```
 [http://www.example.com/anypath/callback_url.php]?id=[transaction id]&uid=[AdColony device id]&amount=[currency amount to award]&currency=[name of currency to award]&open_udid=[OpenUDID]&udid=[UDID]&odin1=[ODIN1]&mac_sha1=[SHA-1 of MAC address]&verifier=[security value]
 ```
@@ -422,7 +423,7 @@ mac_sha1 | String | SHA-1 hash of lowercase colon-separated MAC address
 custom_id | String | Custom user ID
 verifier | String | MD5 hash for message security
 
-For your convenience, we provide an example PHP + MySQL script that demos the necessary steps; you can use any language or datastore with the necessary functionality and model the behavior on the example code.
+参考例：下記はPHP + MySQLで実装した例です
 
 ```php
 <?php
@@ -476,7 +477,7 @@ For your convenience, we provide an example PHP + MySQL script that demos the ne
     echo "vc_success";
 ?>
 ```
-Note that you must insert application-specific logic in the places marked with `TODO`. You can create the MySQL table used in this example with the following SQL statement (remember to insert *your* currency names in the `enum`):
+注意、`TODO`のところにはアプリケーション特定のロジックを実装してください。上記のコードで使ったMySQLデータベースは下記のSQLで作成できます。(通貨名を`enum`にインサートするのを忘れないようにして下さい)
 
 ```mysql
 CREATE TABLE `AdColony_Transactions` (
