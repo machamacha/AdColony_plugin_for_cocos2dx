@@ -54,8 +54,8 @@ Run on Android
 * Build plugin
 
         cd AdColonySample/cocos2d/plugin/tools/
-        ./publish
-        ./gameDevGuide.sh
+        ./publish.sh
+        ./gameDevGuide.sh#please select adcolony
 
 * Import project into Eclipse
     * Import cocos2d library

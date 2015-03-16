@@ -596,7 +596,7 @@
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/xiaofan.dai/Documents/study/cocos2dx/adcolony_cocos2dx/AdColonySample/cocos2d/plugin/plugins/adcolony/proj.ios,
+					"\"$(SRCROOT)/../cocos2d/plugin/plugins/adcolony/proj.ios\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -636,7 +636,7 @@
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/xiaofan.dai/Documents/study/cocos2dx/adcolony_cocos2dx/AdColonySample/cocos2d/plugin/plugins/adcolony/proj.ios,
+					"\"$(SRCROOT)/../cocos2d/plugin/plugins/adcolony/proj.ios\"",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

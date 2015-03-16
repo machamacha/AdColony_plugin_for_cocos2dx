@@ -53,7 +53,7 @@ Androidで実行する場合
 * pluginをビルドする
 
         cd AdColonySample/cocos2d/plugin/tools/
-        ./publish
+        ./publish.sh
         ./gameDevGuide.sh
 
 * プロジェクトをEclipseにインポート
@@ -151,7 +151,7 @@ Android
 
                 cd [your_project_path]/cocos2d/plugin/tools/
                 ./publish.sh
-                ./gameDevGuide.sh #please select adcolony
+                ./gameDevGuide.sh # adcolonyを選択してください。
 
     * Manifestを修正する
         
