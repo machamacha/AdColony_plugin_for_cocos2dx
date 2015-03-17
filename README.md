@@ -266,7 +266,7 @@ Configure AdColony
 AdColony Pluginをロードして下記のように必要の情報を設定してください。
 
     //Load plugin
-    AdColonyAgent* _adsAdColonyAgent = AdColonyAgent::getInstance();
+    AdColonyAgent* _adcolonyAds = AdColonyAgent::getInstance();
     //set custom id, used for V4VC
     _adcolonyAds->setCustomID("customID");
     //configure adcolony

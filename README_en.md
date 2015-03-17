@@ -266,7 +266,7 @@ Configure AdColony
 Load AdColony plugin and set account info like following.
 
     //Load plugin
-    AdColonyAgent* _adsAdColonyAgent = AdColonyAgent::getInstance();
+    AdColonyAgent* _adcolonyAds = AdColonyAgent::getInstance();
     //set custom id, used for V4VC
     _adcolonyAds->setCustomID("customID");
     //configure adcolony
