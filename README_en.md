@@ -131,6 +131,24 @@ iOS
 
         **Note**:  `-force_load` options are not necessary  if `-ObjC` is set.
 
+* Pause and Resume during video playing.
+
+    Open `[your_project_path]/proj.ios/ios/RootViewController.mm` and add following code。
+
+        -(void)viewWillAppear:(BOOL)animated
+        {
+          cocos2d::Director::getInstance()->resume();
+          cocos2d::Director::getInstance()->startAnimation();
+        }
+
+        - (void)viewWillDisappear:(BOOL)animated
+        {
+          cocos2d::Director::getInstance()->pause();
+          cocos2d::Director::getInstance()->stopAnimation();
+        }
+
+    **Note**：This is a resolve for `OpenGL error 0x0506` when video view close on some Cocos2d-x versions.
+
 Android
 -------
 (Based on Eclipse)
