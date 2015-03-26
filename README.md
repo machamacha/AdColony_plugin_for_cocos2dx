@@ -2,6 +2,8 @@ adcolony_cocos2dx
 =================
 Cocos2d-x support for AdColony.
 
+**これはbetaテスト版です。実装時に不具合があれば担当者に連絡お願いします。**
+
 * Modified: March 13th, 2015
 * Plug-in Version: 0.9.0
 * iOS SDK Version: 2.5.0
