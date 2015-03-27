@@ -110,20 +110,4 @@
     [super dealloc];
 }
 
-/**
- @brief pause and resume game when video start and finish.It will cause error if you don't implement this.
- @see http://stackoverflow.com/questions/20612935/cocos2dx-opengl-error-0x0506-when-dismissing-uiviewcontroller 
-*/
--(void)viewWillAppear:(BOOL)animated
-{
-  cocos2d::Director::getInstance()->resume();
-  cocos2d::Director::getInstance()->startAnimation();
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-  cocos2d::Director::getInstance()->pause();
-  cocos2d::Director::getInstance()->stopAnimation();
-}
-
 @end

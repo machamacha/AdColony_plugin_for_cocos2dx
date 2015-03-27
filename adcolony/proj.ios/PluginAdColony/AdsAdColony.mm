@@ -25,6 +25,18 @@
   [AdColony configureWithAppID:appID zoneIDs:zoneIDs delegate:self logging:YES];
 
   
+  //it seems AdColony conflicts with cocos2d-x when using opengl, we use a new window for AdColony.
+  if(_videoWindow == nil){
+    _videoWindow = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+    [_videoWindow setBackgroundColor:[UIColor clearColor]];
+    _videoWindow.rootViewController = [[UIViewController alloc] init];
+    [_videoWindow setWindowLevel:UIWindowLevelStatusBar];
+    _keyWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    [_videoWindow makeKeyAndVisible];
+    [_keyWindow makeKeyAndVisible];
+    [_videoWindow setHidden:TRUE];
+  }
+  
 }
 
 - (void) showAds: (NSMutableDictionary*) info position:(int) pos{
@@ -265,6 +277,12 @@
  */
 - ( void ) onAdColonyAdStartedInZone:( NSString * )zoneID{
   OUTPUT_LOG(@"onAdColonyAdStartedInZone: %@", zoneID);
+    // Add the view controller's view to the window and display.
+    _keyWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    [_videoWindow makeKeyAndVisible];
+    _keyWindowViewController = _keyWindow.rootViewController;
+    [_keyWindow setRootViewController:nil];
+    
   [AdColonyAdsWrapper onAdsResult:self withZoneID:zoneID withRet:kAdColonyVideoStarted withMsg:@"AdColony ad will be presented"];
 
 }
@@ -280,6 +298,11 @@
   OUTPUT_LOG(@"onAdColonyAdAttemptFinished:%d inZone:%@", shown, zoneID);
   [AdColonyAdsWrapper onAdsResult:self withZoneID:zoneID withRet:(shown ? kAdColonyVideoFinished : kAdColonyVideoFailed) withMsg:@"AdColony ad finished"];
 
+    if(_videoWindow != nil && !_videoWindow.hidden){
+        _keyWindow.rootViewController = _keyWindowViewController;
+        [_keyWindow makeKeyAndVisible];
+        [_videoWindow setHidden:YES];
+    }
 }
 
 @end
