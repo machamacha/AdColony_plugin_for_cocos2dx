@@ -131,23 +131,6 @@ iOS
         * `-fobjc-arc` 
 
         **注意**:  `-ObjC`が設定された場合、`-force_load` を設定する必要がないです。
-* ゲームの停止・再開処理追加
-
-    `[your_project_path]/proj.ios/ios/RootViewController.mm`に下記を記述してください。
-
-        -(void)viewWillAppear:(BOOL)animated
-        {
-          cocos2d::Director::getInstance()->resume();
-          cocos2d::Director::getInstance()->startAnimation();
-        }
-
-        - (void)viewWillDisappear:(BOOL)animated
-        {
-          cocos2d::Director::getInstance()->pause();
-          cocos2d::Director::getInstance()->stopAnimation();
-        }
-
-    **注意**：動画終了した後に、Cocos2d-xのバージョンによる、`OpenGL error 0x0506`が出る可能性があります、これで解決します。
 
 Android
 -------
