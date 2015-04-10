@@ -24,7 +24,7 @@ About
 
 このドキュメントはcocos2d-xで開発したアプリケーションにAdColony SDKを導入する際の手順書です。このドキュメントは下記開発環境を想定しています。
 
-* Cocos2d-x バージョン: 3.0+
+* Cocos2d-x バージョン: 3.2+
 * 開発言語: C++
 * iOS開発IDE: Xcode
 * Android開発IDE: Eclipse
