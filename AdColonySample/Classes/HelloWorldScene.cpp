@@ -187,7 +187,7 @@ void HelloWorld::onAdColonyV4VCReward(bool success, const char* name,int points)
 
 void HelloWorld::onAdColonyAdStarted()
 {
-  log("onAdColonyV4VCReward");
+  log("onAdColonyAdStarted");
 }
 
 void HelloWorld::onAdColonyAdAttemptFinished(bool adShown)
