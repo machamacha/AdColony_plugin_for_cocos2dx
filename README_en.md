@@ -23,7 +23,7 @@ About
 This document explains how to show AdColony video ads in your Cocos2d-x application.
 Currently we support following development tools:
 
-* Cocos2d-x version: 3.0+
+* Cocos2d-x version: 3.2+
 * development language: C++
 * iOS development IDE: Xcode
 * Android development IDE: Eclipse
