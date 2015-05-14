@@ -41,7 +41,7 @@ Includes
    Plays an AdColony V4VC ad if one is available.
 - [`showVideoAd`](#showvideoad)
 
-   Plays an AdColony ad.
+   Plays an AdColony interstitial ad.
 - [`statusForZone`](#statusforzone)
 
    Returns status of the AdColony zone passed in.
