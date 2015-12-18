@@ -344,16 +344,6 @@ listenerの例(AdColonySampleから）
     }
 
 
-Showing interstitial Videos
-=================
-動画成功にロードした後に下記のようにインタスティシャール広告を表示してください:
-
-    _adcolonyAds->showVideoAd("zoneID");
-
-- **zoneID**
-
-    configureで設定されてるIDリスト中にある管理画面で取得した有効なインタスティシャール枠IDです。
-
 Showing V4VC Videos
 ===============
 AdColony V4VC (Videos-for-Virtual-Currency)は[[interstitial ads|AdColony Product Overview]]の上で実装した動画広告を再生完了した時点で、ユーザーに仮想通貨を付与することができるシステムです。AdColony V4VCはユーザーの仮想通貨残高を追跡しません。ユーザーに仮想通貨を付与すべき時点でアプリケーションに通知する機能を提供しています。
@@ -497,6 +487,16 @@ CREATE TABLE `AdColony_Transactions` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ```
+Showing interstitial Videos
+=================
+動画成功にロードした後に下記のようにインタスティシャール広告を表示してください:
+
+    _adcolonyAds->showVideoAd("zoneID");
+
+- **zoneID**
+
+    configureで設定されてるIDリスト中にある管理画面で取得した有効なインタスティシャール枠IDです。
+
 
 ##よくある質問##
 ###基本情報に関して###
